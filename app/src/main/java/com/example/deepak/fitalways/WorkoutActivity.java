@@ -52,25 +52,26 @@ public class WorkoutActivity extends AppCompatActivity {
         int repcount = StartWorkoutActivity.exerciseList.get(index).getRep_total();
         setRepInfo.setText("Set "+String.valueOf(setcount)+"/ Rep "+String.valueOf(repcount));
 
-        //Mute button functionality not working
+        //Mute button functionality
         muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Mute", String.valueOf(isMute[0]));
+
                 videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mp) {
                         if (!isMute[0]) {
                             mp.setVolume(0f, 0f);
-                            Log.d("Mute", String.valueOf(isMute[0]));
+                        } else {
+                            mp.setVolume(100f, 100f);
+                        }
+                        if (!isMute[0]){
                             muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_black_24dp));
                             isMute[0] = true;
-                        } else {
-                            Log.d("Mute", String.valueOf(isMute[0]));
-                            mp.setVolume(100f, 100f);
-                            muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_black_24dp));
-                            isMute[0] = false;
                         }
+                        else{
+                            muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_black_24dp));
+                            isMute[0] = false;}
                     }
                 });
             }
@@ -80,7 +81,7 @@ public class WorkoutActivity extends AppCompatActivity {
         stopButton.setVisibility(View.GONE);
         nextButton.setVisibility(View.GONE);
 
-        boolean intro_status = StartWorkoutActivity.exerciseList.get(index).isIntro();
+        final boolean intro_status = StartWorkoutActivity.exerciseList.get(index).isIntro();
 
 //        String path = "video" + StartWorkoutActivity.exerciseList.get(index).getVideo();
         String video_path = "android.resource://" + getPackageName() + "/" + R.raw.video;
@@ -88,19 +89,20 @@ public class WorkoutActivity extends AppCompatActivity {
         videoView.start();
 
         if (!intro_status) {
+            rep_count = 0;
 
             //This will show the countdown for reps and timer based exercises
             if (!StartWorkoutActivity.exerciseList.get(index).isRep()){
                 setRepInfo.setVisibility(View.INVISIBLE);
                 repInfo.setVisibility(View.INVISIBLE);
-                start_time = StartWorkoutActivity.exerciseList.get(index).getTotal_time()*1000;
+                start_time = StartWorkoutActivity.exerciseList.get(index).getTotal_time()*1000+1000;
                 time_left = start_time;
                 start_timer(0);
             }
             else{
-                rep_count = 0;
+
                 repInfo.setText("No reps");
-                start_time = StartWorkoutActivity.exerciseList.get(index).getRep_time()*1000;
+                start_time = StartWorkoutActivity.exerciseList.get(index).getRep_time()*1000+1000;
                 time_left = start_time;
                 start_timer(1);
             }
@@ -136,7 +138,7 @@ public class WorkoutActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     pause_timer();
                     AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
-                    builder.setTitle("Confirm");
+                    builder.setTitle("Please confirm");
                     builder.setMessage("Do you really want to skip to the end of workout");
 
                     builder.setNeutralButton("No",new DialogInterface.OnClickListener() {
@@ -149,6 +151,8 @@ public class WorkoutActivity extends AppCompatActivity {
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            StartWorkoutActivity.exerciseList.get(index).setRep_count((int)(rep_count));
+                            StartWorkoutActivity.exerciseList.get(index).setTime_taken((int)(start_time-time_left)/1000);
                             Intent intent = new Intent(WorkoutActivity.this,CompletedWorkout.class);
                             intent.putExtra("Index",index+1);
                             startActivity(intent);
@@ -164,9 +168,12 @@ public class WorkoutActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     pause_timer();
                     AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
-                    builder.setTitle("Confirm");
-                    builder.setMessage("Skip to next Exercise ?");
+                    builder.setTitle("Please confirm");
 
+                    builder.setMessage("Skip to next Exercise ?");
+                    if (index+1 == StartWorkoutActivity.exerciseList.size()){
+                        builder.setMessage("Do you really want to skip to the end of workout");
+                    }
                     builder.setNeutralButton("No",new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -176,6 +183,8 @@ public class WorkoutActivity extends AppCompatActivity {
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            StartWorkoutActivity.exerciseList.get(index).setRep_count((int)(rep_count));
+                            StartWorkoutActivity.exerciseList.get(index).setTime_taken((int)(start_time-time_left)/1000);
                             go_to_next_state(index);
                         }
                     });
@@ -187,6 +196,9 @@ public class WorkoutActivity extends AppCompatActivity {
             videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
+                    pause_timer();
+                    StartWorkoutActivity.exerciseList.get(index).setRep_count((int)(rep_count));
+                    StartWorkoutActivity.exerciseList.get(index).setTime_taken((int)(start_time-time_left)/1000);
                     go_to_next_state(index);
 
                 }
@@ -208,7 +220,7 @@ public class WorkoutActivity extends AppCompatActivity {
             skipIntro.setVisibility(View.VISIBLE);
             workoutName.setVisibility(View.VISIBLE);
             startTimer.setVisibility(View.VISIBLE);
-            time_left = StartWorkoutActivity.exerciseList.get(index).getTotal_time()*1000;
+            time_left = StartWorkoutActivity.exerciseList.get(index).getTotal_time()*1000+1000;
             start_timer(2);
             videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -251,11 +263,10 @@ public class WorkoutActivity extends AppCompatActivity {
         int sec = (int) (time_left/1000);
         Timer.setText(String.valueOf(sec));
         if (sec == 0){
-        rep_count++;
-        StartWorkoutActivity.exerciseList.get(index).setRep_count((int) rep_count);
-            repInfo.startAnimation(AnimationUtils.loadAnimation(WorkoutActivity.this,android.R.anim.slide_in_left));
-            repInfo.setText(String.valueOf(rep_count)+" reps");
-        start_time = StartWorkoutActivity.exerciseList.get(index).getRep_time()*1000;
+        rep_count+=1;
+        repInfo.startAnimation(AnimationUtils.loadAnimation(WorkoutActivity.this,android.R.anim.slide_in_left));
+        repInfo.setText(String.valueOf(rep_count)+" reps");
+        start_time = StartWorkoutActivity.exerciseList.get(index).getRep_time()*1000+1000;
         time_left = start_time;
         start_timer(1);}
 

@@ -1,12 +1,20 @@
 package com.example.deepak.fitalways.Models;
 
 
-import java.util.ArrayList;
-
 public class Workout {
     int id;
     String name_workout;
     String date;
     int time,calories;
-    ArrayList<Exercise> ExerciseList;
+
+    public Workout(int id, String name_workout, String date, int time, int calories, String exercise) {
+        this.id = id;
+        this.name_workout = name_workout;
+        this.date = date;
+        this.time = time;
+        this.calories = calories;
+        this.exercise = exercise;
+    }
+
+    String exercise;
 }

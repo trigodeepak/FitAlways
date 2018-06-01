@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
-        android:text="Wow! You have Completed Classic Workout"
+        android:text="Wow! You have Completed %s"
         android:textColor="#4CAF50"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -32,7 +32,7 @@
         android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 
     <Button
-        android:id="@+id/go_to_workout"
+        android:id="@+id/finish_workout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

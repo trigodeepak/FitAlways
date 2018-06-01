@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.deepak.fitalways.IntroActivity">
+    tools:context="com.example.deepak.fitalways.WorkoutActivity">
 
     <VideoView
         android:id="@+id/workout_video"
@@ -18,16 +18,14 @@
         android:id="@+id/workout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/previousbutton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="36dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="91dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
         android:text="Workout"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/skip_intro"
@@ -35,67 +33,68 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/workout_name"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
         android:text="Skip Intro"
         android:textSize="20sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/start_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/workout_name"
-        android:layout_alignStart="@+id/workout_name"
-        android:layout_below="@+id/workout_name"
-        android:layout_marginTop="12dp"
+        android:layout_alignLeft="@+id/skip_intro"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/skip_intro"
+        android:layout_marginTop="65dp"
         android:text="Starts in %s "
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/rep_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/timer_reps"
+        android:layout_alignBottom="@+id/timer_reps"
         android:layout_alignEnd="@+id/skip_intro"
         android:layout_alignRight="@+id/skip_intro"
-        android:layout_alignTop="@+id/start_timer"
         android:text="rep %s/%s" />
 
     <TextView
         android:id="@+id/set_rep_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/skip_intro"
-        android:layout_alignRight="@+id/skip_intro"
-        android:layout_below="@+id/rep_info"
-        android:layout_marginTop="13dp"
+        android:layout_alignTop="@+id/workout_name"
+        android:layout_toEndOf="@+id/timer_reps"
+        android:layout_toRightOf="@+id/timer_reps"
         android:text="Set %s/ Rep %s" />
 
     <TextView
         android:id="@+id/timer_reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/skip_intro"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_toLeftOf="@+id/set_rep_info"
-        android:layout_toStartOf="@+id/set_rep_info"
+
+        android:layout_below="@+id/start_timer"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_toLeftOf="@+id/skip_intro"
+        android:layout_toStartOf="@+id/skip_intro"
         android:text="%s s"
         android:textSize="23sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/previousbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button_mute"
-        android:layout_marginLeft="45dp"
-        android:layout_marginStart="45dp"
-        android:layout_toEndOf="@+id/start_timer"
-        android:layout_toRightOf="@+id/start_timer"
-        app:srcCompat="@drawable/ic_navigate_before_black_24dp"
-        android:visibility="invisible"/>
+        android:layout_alignTop="@+id/button_mute"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/workout_name"
+        android:layout_toRightOf="@+id/workout_name"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_navigate_before_black_24dp" />
 
     <ImageView
         android:id="@+id/nextbutton"
