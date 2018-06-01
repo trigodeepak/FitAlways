@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.deepak.fitalways.IntroActivity">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="30dp"
+        android:text="Workout"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/skip_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:text="Skip Intro"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/start_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="12dp"
+        android:text="Starts in %s " />
+
+    <TextView
+        android:id="@+id/rep_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/skip_intro"
+        android:layout_alignRight="@+id/skip_intro"
+        android:layout_alignTop="@+id/start_timer"
+        android:text="rep %s/%s" />
+
+    <TextView
+        android:id="@+id/set_rep_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/skip_intro"
+        android:layout_alignRight="@+id/skip_intro"
+        android:layout_below="@+id/rep_info"
+        android:layout_marginTop="13dp"
+        android:text="Set %s/ Rep %s" />
+
+    <TextView
+        android:id="@+id/timer_reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/set_rep_info"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_toLeftOf="@+id/set_rep_info"
+        android:layout_toStartOf="@+id/set_rep_info"
+        android:text="%s s"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/previousbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mute_button"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_toEndOf="@+id/start_timer"
+        android:layout_toRightOf="@+id/start_timer"
+        app:srcCompat="@drawable/ic_navigate_before_black_24dp" />
+
+    <ImageView
+        android:id="@+id/nextbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/previousbutton"
+        android:layout_toLeftOf="@+id/timer_reps"
+        android:layout_toStartOf="@+id/timer_reps"
+        app:srcCompat="@drawable/ic_navigate_next_black_24dp" />
+
+    <ImageView
+        android:id="@+id/playbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/previousbutton"
+        android:layout_marginLeft="49dp"
+        android:layout_marginStart="49dp"
+        android:layout_toEndOf="@+id/previousbutton"
+        android:layout_toRightOf="@+id/previousbutton"
+        app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+    <ImageView
+        android:id="@+id/stopbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/nextbutton"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:layout_toLeftOf="@+id/nextbutton"
+        android:layout_toStartOf="@+id/nextbutton"
+        app:srcCompat="@drawable/ic_stop_black_24dp" />
+
+    <ImageView
+        android:id="@+id/pause_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/stopbutton"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/ic_pause_black_24dp" />
+
+    <ImageView
+        android:id="@+id/mute_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignLeft="@+id/rep_info"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/rep_info"
+        android:layout_marginBottom="37dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        app:srcCompat="@drawable/ic_volume_up_black_24dp" />
+
+
+</RelativeLayout>
