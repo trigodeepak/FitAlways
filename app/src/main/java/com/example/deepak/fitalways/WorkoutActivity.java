@@ -65,15 +65,15 @@ public class WorkoutActivity extends AppCompatActivity {
                         } else {
                             mp.setVolume(100f, 100f);
                         }
-                        if (!isMute[0]){
-                            muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_black_24dp));
-                            isMute[0] = true;
-                        }
-                        else{
-                            muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_black_24dp));
-                            isMute[0] = false;}
                     }
                 });
+                if (!isMute[0]){
+                    muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_black_24dp));
+                    isMute[0] = true;
+                }
+                else{
+                    muteButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_black_24dp));
+                    isMute[0] = false;}
             }
         });
 
