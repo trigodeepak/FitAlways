@@ -7,7 +7,7 @@
     tools:context="com.example.deepak.fitalways.IntroActivity">
 
     <VideoView
-        android:id="@+id/videoView"
+        android:id="@+id/workout_video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/workout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -26,6 +26,7 @@
         android:layout_marginTop="30dp"
         android:text="Workout"
         android:textSize="20sp"
+        android:visibility="invisible"
         />
 
     <TextView
@@ -34,21 +35,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/workout_name"
         android:layout_marginEnd="13dp"
         android:layout_marginRight="13dp"
         android:text="Skip Intro"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/start_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/workout_name"
+        android:layout_alignStart="@+id/workout_name"
+        android:layout_below="@+id/workout_name"
         android:layout_marginTop="12dp"
-        android:text="Starts in %s " />
+        android:text="Starts in %s "
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/rep_info"
@@ -73,24 +76,26 @@
         android:id="@+id/timer_reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/set_rep_info"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
+        android:layout_below="@+id/skip_intro"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:layout_toLeftOf="@+id/set_rep_info"
         android:layout_toStartOf="@+id/set_rep_info"
         android:text="%s s"
-        android:textSize="20sp" />
+        android:textSize="23sp"
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/previousbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mute_button"
+        android:layout_alignBottom="@+id/button_mute"
         android:layout_marginLeft="45dp"
         android:layout_marginStart="45dp"
         android:layout_toEndOf="@+id/start_timer"
         android:layout_toRightOf="@+id/start_timer"
-        app:srcCompat="@drawable/ic_navigate_before_black_24dp" />
+        app:srcCompat="@drawable/ic_navigate_before_black_24dp"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/nextbutton"
@@ -106,8 +111,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/previousbutton"
-        android:layout_marginLeft="49dp"
-        android:layout_marginStart="49dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp"
         android:layout_toEndOf="@+id/previousbutton"
         android:layout_toRightOf="@+id/previousbutton"
         app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
@@ -116,26 +121,17 @@
         android:id="@+id/stopbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/nextbutton"
-        android:layout_marginEnd="43dp"
-        android:layout_marginRight="43dp"
-        android:layout_toLeftOf="@+id/nextbutton"
-        android:layout_toStartOf="@+id/nextbutton"
+        android:layout_alignTop="@+id/playbutton"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:layout_toEndOf="@+id/playbutton"
+        android:layout_toRightOf="@+id/playbutton"
         app:srcCompat="@drawable/ic_stop_black_24dp" />
 
     <ImageView
-        android:id="@+id/pause_button"
+        android:id="@+id/button_mute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/stopbutton"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_pause_black_24dp" />
-
-    <ImageView
-        android:id="@+id/mute_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
         android:layout_alignLeft="@+id/rep_info"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/rep_info"
