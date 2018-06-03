@@ -36,7 +36,7 @@ public class WorkoutActivity extends AppCompatActivity {
          stopButton =  findViewById(R.id.stopbutton);
          nextButton =  findViewById(R.id.nextbutton);
          muteButton =  findViewById(R.id.button_mute);
-        final boolean[] isMute = {false};
+         final boolean[] isMute = {false};
 
          skipIntro =  findViewById(R.id.skip_intro);
          workoutName =  findViewById(R.id.workout_name);
@@ -115,7 +115,6 @@ public class WorkoutActivity extends AppCompatActivity {
                     playButton.setVisibility(View.VISIBLE);
                     stopButton.setVisibility(View.VISIBLE);
                     nextButton.setVisibility(View.VISIBLE);
-
                 }
             });
 
@@ -154,7 +153,7 @@ public class WorkoutActivity extends AppCompatActivity {
                             StartWorkoutActivity.exerciseList.get(index).setRep_count((int)(rep_count));
                             StartWorkoutActivity.exerciseList.get(index).setTime_taken((int)(start_time-time_left)/1000);
                             Intent intent = new Intent(WorkoutActivity.this,CompletedWorkout.class);
-                            intent.putExtra("Index",index+1);
+                            finish();
                             startActivity(intent);
                         }
                     });
@@ -288,6 +287,7 @@ public class WorkoutActivity extends AppCompatActivity {
         if (index+1<StartWorkoutActivity.exerciseList.size()){
             Intent intent = new Intent(WorkoutActivity.this,WorkoutActivity.class);
             intent.putExtra("Index",index+1);
+            finish();
             startActivity(intent);}
         else{
             Intent intent = new Intent(WorkoutActivity.this,CompletedWorkout.class);

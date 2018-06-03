@@ -39,6 +39,7 @@ public class CompletedWorkout extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CompletedWorkout.this,MainActivity.class);
+                finish();
                 startActivity(intent);
             }
         });

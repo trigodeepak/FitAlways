@@ -30,6 +30,7 @@ public class StartWorkoutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(StartWorkoutActivity.this,WorkoutActivity.class);
                 intent.putExtra("Index",0);
+                finish();
                 startActivity(intent);
             }
         });
